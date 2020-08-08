@@ -2,8 +2,6 @@ name: GitHub-exp CI
 
 on:
   push:
-    branches:    
-      - master
     tags:
       - v*
 
