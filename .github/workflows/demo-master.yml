@@ -28,9 +28,6 @@ jobs:
           - Second Change
         draft: false
         prerelease: false
-      run: |
-        echo "everything ok"
-        echo "version:" ${{ github.ref }}
     
     - name: GitHub-exp
       run: |
