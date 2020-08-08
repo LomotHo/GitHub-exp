@@ -1,10 +1,8 @@
-name: GitHub-exp CI
+name: every push
 
-on:
-  push:
+on: [push]
 
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
