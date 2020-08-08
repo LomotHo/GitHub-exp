@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:        
+      - 1.*
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: GitHub-exp
+      run: |
+        echo "everything ok"
+        cat VERSION
