@@ -13,11 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: GitHub-exp
-      run: |
-        echo "everything ok"
-        echo "version:" ${{ github.ref }}
       
     - name: Create Release
       id: create_release
@@ -33,3 +28,11 @@ jobs:
           - Second Change
         draft: false
         prerelease: false
+      run: |
+        echo "everything ok"
+        echo "version:" ${{ github.ref }}
+    
+    - name: GitHub-exp
+      run: |
+        echo "everything ok"
+        echo "version:" ${{ github.ref }}
