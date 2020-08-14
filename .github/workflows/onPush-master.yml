@@ -1,6 +1,9 @@
-name: every push
+name: onPush master
 
-on: [push]
+on: 
+  push:
+    branches:
+      - master
 
 jobs:
   build:
