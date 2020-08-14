@@ -33,3 +33,4 @@ jobs:
       run: |
         echo "everything ok"
         echo "version:" ${{ github.ref }}
+        echo "env version:" ${{ env.RELEASE_VERSION }}
