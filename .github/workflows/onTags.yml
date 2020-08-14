@@ -1,9 +1,5 @@
 name: GitHub-exp CI
 
-# on: [push]
-#   tags:
-#     - v*
-
 on:
   push:
     tags:
