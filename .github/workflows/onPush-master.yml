@@ -1,0 +1,24 @@
+name: onPush master
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    # - name: set env
+    #   run: |
+    #     echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+
+    - name: GitHub-exp
+      run: |
+        echo "everything ok"
+        echo "version:" ${{ github.ref }}
+        # echo "version:" ${{ env.RELEASE_VERSION }}

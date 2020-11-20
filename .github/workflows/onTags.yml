@@ -1,8 +1,9 @@
-name: GitHub-exp CI
+name: onTags
 
-on: [push]
-  tags:
-    - v*
+on:
+  push:
+    tags:
+      - v*
 
 jobs:
 
@@ -26,8 +27,13 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
-    
+
+    - name: set env
+      run: |
+        echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+  
     - name: GitHub-exp
       run: |
         echo "everything ok"
         echo "version:" ${{ github.ref }}
+        echo "env version:" ${{ env.RELEASE_VERSION }}
