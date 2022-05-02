@@ -14,4 +14,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: auto-update
       run: |
+        git config --global user.name "Update Bot"
+        git config --global user.email "lomot@qq.com"
         bash ./script/auto-update.sh
