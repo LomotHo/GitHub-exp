@@ -1,15 +1,15 @@
-name: onPush master
-
-on: 
+name: Auto Update Bot
+ 
+on:
   push:
     branches:
       - master
+  schedule:
+    - cron: '20 13 * * *'
 
 jobs:
-  build:
-
+  check-new-version:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     
@@ -17,8 +17,6 @@ jobs:
     #   run: |
     #     echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
-    - name: GitHub-exp
+    - name: auto-update
       run: |
-        echo "everything ok"
-        echo "version:" ${{ github.ref }}
-        # echo "version:" ${{ env.RELEASE_VERSION }}
+        bash ./script/auto-update.sh
