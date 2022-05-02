@@ -8,15 +8,10 @@ on:
     - cron: '20 13 * * *'
 
 jobs:
-  check-new-version:
+  auto-update:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    
-    # - name: set env
-    #   run: |
-    #     echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
-
     - name: auto-update
       run: |
         bash ./script/auto-update.sh

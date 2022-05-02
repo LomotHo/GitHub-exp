@@ -10,8 +10,6 @@ webcontent=$(curl -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)" -s 'ht
 NEW_VERSION=$(echo $webcontent | grep "https://minecraft.azureedge.net/bin-linux/bedrock-server-" | sed 's/^.*bedrock-server-//g' | sed 's/.zip.*$//g')
 NEW_VERSION=1.18.31.04
 
-# # REPO="https://github.com/LomotHo/minecraft-bedrock.git"
-# REPO="git@github.com:LomotHo/minecraft-bedrock.git"
 REPO_PATH=.
 version_reg='^1(\.[0-9]+){3}$'
 
@@ -21,10 +19,6 @@ if [[ ! "$NEW_VERSION" =~ $version_reg ]]; then
   exit
 fi
 
-# # get repo
-# rm -rf $REPO_PATH
-# LogInfo "cloning $REPO to $REPO_PATH"
-# git clone $REPO $REPO_PATH --depth 1
 OLD_VERSION=$(cat ${REPO_PATH}/VERSION)
 
 if [[ ! "$OLD_VERSION" =~ $version_reg ]]; then
@@ -39,9 +33,9 @@ else
   LogInfo "updating ${OLD_VERSION} => ${NEW_VERSION}"
 fi
 
-sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/Dockerfile
-sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/readme.md
-sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/readme_zh.md
+# sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/Dockerfile
+# sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/readme.md
+# sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/readme_zh.md
 sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/VERSION
 
 LogInfo "push update"
