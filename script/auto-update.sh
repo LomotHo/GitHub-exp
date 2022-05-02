@@ -27,7 +27,7 @@ if [[ ! "$OLD_VERSION" =~ $version_reg ]]; then
 fi
 
 if [[ "${OLD_VERSION}" == "${NEW_VERSION}" ]]; then
-  LogWarn "current version is newest"
+  LogInfo "current version is newest"
   exit
 else
   LogInfo "updating ${OLD_VERSION} => ${NEW_VERSION}"
