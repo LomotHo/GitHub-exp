@@ -18,19 +18,20 @@ jobs:
         git config --global user.email "lomot@qq.com"
         bash ./script/auto-update.sh
 
-    - name: Push Commit
-      run: |
-        git config --global user.name "Update Bot"
-        git config --global user.email "lomot@qq.com"
-        git add . && git commit -am "update to ${{ env.NEW_VERSION }}"
-        git push
-        git tag ${{ env.NEW_VERSION }}
-        git push --tag
-
     - name: Publish Image
       if: ${{env.NEW_VERSION != ''}}
       run: |
         echo "publish ${{ env.NEW_VERSION }}"
+
+    - name: Push Commit
+      if: ${{env.NEW_VERSION != ''}}
+      run: |
+        git config --global user.name "Update Bot"
+        # git config --global user.email "lomot@qq.com"
+        git add . && git commit -am "update to ${{ env.NEW_VERSION }}"
+        git push
+        git tag ${{ env.NEW_VERSION }}
+        git push --tag
 
     - name: Create Release
       id: create_release
