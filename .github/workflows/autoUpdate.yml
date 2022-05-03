@@ -19,27 +19,28 @@ jobs:
         bash ./script/auto-update.sh
 
     - name: Publish Image
-      if: ${{env.NEW_VERSION != ''}}
+      if: ${{ env.RELEASE_VERSION != '' }}
       run: |
-        echo "publish ${{ env.NEW_VERSION }}"
+        echo "publish ${{ env.RELEASE_VERSION }}"
 
     - name: Push Commit
-      if: ${{env.NEW_VERSION != ''}}
+      if: ${{ env.RELEASE_VERSION != '' }}
       run: |
         git config --global user.name "Update Bot"
         # git config --global user.email "lomot@qq.com"
-        git add . && git commit -am "update to ${{ env.NEW_VERSION }}"
+        git add . && git commit -am "update to ${{ env.RELEASE_VERSION }}"
         git push
-        git tag ${{ env.NEW_VERSION }}
+        git tag ${{ env.RELEASE_VERSION }}
         git push --tag
 
     - name: Create Release
+      if: ${{ env.RELEASE_VERSION != '' && env.RELEASE_VERSION != 'dev' }}
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ env.NEW_VERSION }}
-        release_name: Release ${{ env.NEW_VERSION }}
+        tag_name: ${{ env.RELEASE_VERSION }}
+        release_name: Release ${{ env.RELEASE_VERSION }}
         draft: false
         prerelease: false
