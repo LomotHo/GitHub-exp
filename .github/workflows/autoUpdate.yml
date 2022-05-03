@@ -28,7 +28,7 @@ jobs:
         git push --tag
 
     - name: Publish Image
-      if: "{{env.NEW_VERSION != ''}}"
+      if: ${{env.NEW_VERSION != ''}}
       run: |
         echo "publish ${{ env.NEW_VERSION }}"
 
