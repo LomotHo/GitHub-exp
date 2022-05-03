@@ -22,14 +22,14 @@ jobs:
       run: |
         git config --global user.name "Update Bot"
         git config --global user.email "lomot@qq.com"
-        git add . && git commit -am "update to $NEW_VERSION"
+        git add . && git commit -am "update to ${{ env.NEW_VERSION }}"
         git push
-        git tag $NEW_VERSION
+        git tag ${{ env.NEW_VERSION }}
         git push --tag
 
     - name: Publish Image
       run: |
-        echo "publish $NEW_VERSION"
+        echo "publish ${{ env.NEW_VERSION }}"
 
     - name: Create Release
       id: create_release

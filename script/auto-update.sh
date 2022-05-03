@@ -8,7 +8,7 @@ function LogError() { echo -e "\033[31m[error] $1\033[0m"; }
 
 # webcontent=$(curl -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)" -s 'https://www.minecraft.net/en-us/download/server/bedrock')
 # NEW_VERSION=$(echo $webcontent | grep "https://minecraft.azureedge.net/bin-linux/bedrock-server-" | sed 's/^.*bedrock-server-//g' | sed 's/.zip.*$//g')
-NEW_VERSION=1.2.3.4
+NEW_VERSION=1.2.3.5
 
 REPO_PATH=.
 version_reg='^1(\.[0-9]+){3}$'
@@ -51,4 +51,4 @@ sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/VERSION
 # UPDATE_OK=true
 # echo "::set-env name=UPDATE_OK::$UPDATE_OK"
 # echo "::set-env name=NEW_VERSION::$NEW_VERSION"
-echo "name=NEW_VERSION" >>$NEW_VERSION
+echo "name=NEW_VERSION" >>$$GITHUB_ENV
