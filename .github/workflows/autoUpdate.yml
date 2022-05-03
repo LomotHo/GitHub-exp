@@ -24,7 +24,7 @@ jobs:
         echo "publish ${{ env.RELEASE_VERSION }}"
 
     - name: Push Commit
-      if: ${{ env.RELEASE_VERSION != '' }}
+      if: ${{ env.RELEASE_VERSION != '' && env.RELEASE_VERSION != 'dev' }}
       run: |
         git config --global user.name "Update Bot"
         # git config --global user.email "lomot@qq.com"
@@ -34,7 +34,7 @@ jobs:
         git push --tag
 
     - name: Create Release
-      if: ${{ env.RELEASE_VERSION != '' || 'dev' }}
+      if: ${{ env.RELEASE_VERSION != '' && env.RELEASE_VERSION != 'dev' }}
       id: create_release
       uses: actions/create-release@v1
       env:

@@ -8,8 +8,8 @@ function LogError() { echo -e "\033[31m[error] $1\033[0m"; }
 
 # webcontent=$(curl -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)" -s 'https://www.minecraft.net/en-us/download/server/bedrock')
 # NEW_VERSION=$(echo $webcontent | grep "https://minecraft.azureedge.net/bin-linux/bedrock-server-" | sed 's/^.*bedrock-server-//g' | sed 's/.zip.*$//g')
-# NEW_VERSION=1.2.3.9
-NEW_VERSION=dev
+NEW_VERSION=1.2.3.9
+# NEW_VERSION=dev
 
 REPO_PATH=.
 version_reg='^1(\.[0-9]+){3}$'
@@ -49,6 +49,5 @@ sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/VERSION
 # git push --tag
 
 # # for github action
-# UPDATE_OK=true
+NEW_VERSION=dev
 echo "RELEASE_VERSION=$NEW_VERSION" >>$GITHUB_ENV
-# echo "UPDATE_OK=true" >>$GITHUB_ENV
