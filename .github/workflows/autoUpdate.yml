@@ -34,7 +34,7 @@ jobs:
         git push --tag
 
     - name: Create Release
-      if: ${{ env.RELEASE_VERSION != '' && env.RELEASE_VERSION != 'dev' }}
+      if: ${{ env.RELEASE_VERSION != '' || 'dev' }}
       id: create_release
       uses: actions/create-release@v1
       env:
