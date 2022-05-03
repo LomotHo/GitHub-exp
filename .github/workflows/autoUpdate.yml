@@ -12,8 +12,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: auto-update
+    - name: Check Update
       run: |
         git config --global user.name "Update Bot"
         git config --global user.email "lomot@qq.com"
         bash ./script/auto-update.sh
+
+    - name: Push Commit
+      run: |
+        git config --global user.name "Update Bot"
+        git config --global user.email "lomot@qq.com"
+        git add . && git commit -am "update to $NEW_VERSION"
+        git push
+        git tag $NEW_VERSION
+        git push --tag
+
+    - name: Publish Image
+      run: |
+        echo "publish $NEW_VERSION"
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ env.NEW_VERSION }}
+        release_name: Release ${{ env.NEW_VERSION }}
+        draft: false
+        prerelease: false
