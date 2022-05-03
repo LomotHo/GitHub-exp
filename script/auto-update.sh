@@ -50,4 +50,5 @@ sed -i "s/$OLD_VERSION/$NEW_VERSION/g" $REPO_PATH/VERSION
 # # for github action
 # UPDATE_OK=true
 # echo "::set-env name=UPDATE_OK::$UPDATE_OK"
-echo "::set-env name=NEW_VERSION::$NEW_VERSION"
+# echo "::set-env name=NEW_VERSION::$NEW_VERSION"
+echo "name=NEW_VERSION" >>$NEW_VERSION
